@@ -1,0 +1,26 @@
+#include "mbed.h"
+
+// Define analog input pin for LDR
+AnalogIn ldr(A0);  // LDR is connected to pin A0
+
+// Define PWM output pin for LED
+PwmOut led(D3);    // LED is connected to pin D3
+
+int main() {
+    // Set PWM period to 20 ms (50 Hz)
+    led.period_ms(20);
+
+    while(1) {
+        // Read analog value from LDR (0.0 to 1.0)
+        float ldrValue = ldr.read();
+
+        // Map LDR value to PWM duty cycle (0.0 to 1.0)
+        float dutyCycle = ldrValue;
+
+        // Set LED brightness using PWM duty cycle
+        led.write(dutyCycle);
+
+        // Add a small delay to prevent rapid changes
+        wait_ns(1000);
+    }
+}
