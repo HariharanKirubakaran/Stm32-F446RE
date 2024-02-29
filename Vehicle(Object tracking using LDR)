@@ -1,0 +1,23 @@
+#include "mbed.h"
+#include "LCDi2c.h"
+
+LCDi2c lcd(D14, D15, LCD16x2, 0x27); 
+AnalogIn ldr(A5);
+
+int Count = 0;
+int main() { 
+        lcd.locate(0, 0);
+        lcd.printf("Vehicle Count");
+        lcd.locate(0, 1);
+        lcd.printf("%d",Count);
+        while(1){
+            float ldr_val = ldr.read(); 
+            int ldr_lcd = 1000*ldr_val;
+            if(ldr_lcd == 1000){
+                lcd.locate(0, 1);
+                lcd.printf("%d",Count);                
+                Count++;
+                wait_us(2000000);  // Wait for 2 seconds.
+            }
+        }
+}
