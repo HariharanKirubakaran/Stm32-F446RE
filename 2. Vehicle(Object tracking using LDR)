@@ -17,7 +17,7 @@ int main() {
                 lcd.locate(0, 1);
                 lcd.printf("%d",Count);                
                 Count++;
-                wait_us(2000000);  // Wait for 2 seconds.
+                wait_us(1000000);  // Wait for 2 seconds.
             }
         }
 }
