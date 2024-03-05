@@ -1,0 +1,21 @@
+#include "mbed.h"
+
+DigitalOut relay_out(D6); // Digital output connected to the relay
+
+int main() {
+    while (1) {
+        // Turn on the relay to activate the bulb
+        relay_out = 1; // Set D3 high
+        printf("Bulb is ON\n");
+
+        // Wait for 2 seconds
+        ThisThread::sleep_for(1000ms);
+
+        // Turn off the relay to deactivate the bulb
+        relay_out = 0; // Set D3 low
+        printf("Bulb is OFF\n");
+
+        // Wait for 5 seconds
+        ThisThread::sleep_for(1000ms);
+    }
+}
